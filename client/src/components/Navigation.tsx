@@ -93,6 +93,7 @@ export default function Navigation() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 bg-black/90 z-[998] md:hidden"
+            style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh" }}
             onClick={() => setIsMobileMenuOpen(false)}
             data-testid="mobile-menu-backdrop"
           />
@@ -108,7 +109,13 @@ export default function Navigation() {
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
             className="fixed top-0 right-0 h-screen w-72 bg-white shadow-2xl z-[999] md:hidden"
-            style={{ maxWidth: "80vw" }}
+            style={{ 
+              maxWidth: "80vw",
+              position: "fixed",
+              top: 0,
+              right: 0,
+              height: "100vh"
+            }}
             data-testid="mobile-menu"
           >
             {/* Close Button */}
