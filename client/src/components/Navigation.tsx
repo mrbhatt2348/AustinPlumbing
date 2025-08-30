@@ -84,6 +84,21 @@ export default function Navigation() {
         </div>
       </div>
 
+      {/* Mobile Menu Backdrop */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+            data-testid="mobile-menu-backdrop"
+          />
+        )}
+      </AnimatePresence>
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -92,24 +107,24 @@ export default function Navigation() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 right-0 h-full w-64 bg-card shadow-xl z-50 md:hidden"
+            className="fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl z-50 md:hidden border-l border-border"
             style={{ maxWidth: "80vw" }}
             data-testid="mobile-menu"
           >
-            <div className="p-4">
+            <div className="p-6 h-full overflow-y-auto">
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="float-right text-foreground hover:text-primary"
+                className="float-right text-gray-600 dark:text-gray-300 hover:text-primary"
                 data-testid="mobile-menu-close"
               >
                 <X className="h-6 w-6" />
               </button>
-              <div className="clear-both pt-8 space-y-4">
+              <div className="clear-both pt-8 space-y-6">
                 {navItems.map((item) => (
                   <button
                     key={item.href}
                     onClick={() => scrollToSection(item.href)}
-                    className="block text-foreground hover:text-primary transition-colors py-2 text-lg w-full text-left"
+                    className="block text-gray-800 dark:text-gray-200 hover:text-primary transition-colors py-3 text-xl w-full text-left font-medium border-b border-gray-100 dark:border-gray-700"
                     data-testid={`mobile-nav-${item.href}`}
                   >
                     {item.label}
@@ -117,7 +132,7 @@ export default function Navigation() {
                 ))}
                 <a
                   href="tel:+15125551234"
-                  className="block btn-gradient text-white px-4 py-3 rounded-lg text-lg font-medium mt-4 text-center"
+                  className="block btn-gradient text-white px-6 py-4 rounded-xl text-xl font-bold mt-8 text-center shadow-lg"
                   data-testid="mobile-call-now"
                 >
                   <Phone className="inline mr-2 h-5 w-5" />
