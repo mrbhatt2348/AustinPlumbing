@@ -92,7 +92,7 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] md:hidden"
+            className="fixed inset-0 bg-black/90 z-[998] md:hidden"
             onClick={() => setIsMobileMenuOpen(false)}
             data-testid="mobile-menu-backdrop"
           />
@@ -107,36 +107,46 @@ export default function Navigation() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl z-[70] md:hidden border-l border-gray-200 dark:border-gray-700"
-            style={{ maxWidth: "80vw" }}
+            className="fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 shadow-2xl z-[999] md:hidden"
+            style={{ maxWidth: "85vw" }}
             data-testid="mobile-menu"
           >
-            <div className="p-6 h-full overflow-y-auto">
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="float-right text-gray-600 dark:text-gray-300 hover:text-primary"
-                data-testid="mobile-menu-close"
-              >
-                <X className="h-6 w-6" />
-              </button>
-              <div className="clear-both pt-8 space-y-6">
+            <div className="p-6 h-full flex flex-col">
+              <div className="flex justify-between items-center mb-8">
+                <div className="text-xl font-bold gradient-text flex items-center">
+                  <Wrench className="mr-2 h-5 w-5" />
+                  Austin Pro
+                </div>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                  data-testid="mobile-menu-close"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              
+              <div className="flex-1 space-y-4">
                 {navItems.map((item) => (
                   <button
                     key={item.href}
                     onClick={() => scrollToSection(item.href)}
-                    className="block text-gray-800 dark:text-gray-200 hover:text-primary transition-colors py-3 text-xl w-full text-left font-medium border-b border-gray-100 dark:border-gray-700"
+                    className="block text-gray-800 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors py-4 px-4 text-lg w-full text-left font-medium rounded-lg"
                     data-testid={`mobile-nav-${item.href}`}
                   >
                     {item.label}
                   </button>
                 ))}
+              </div>
+              
+              <div className="mt-6">
                 <a
                   href="tel:+15125551234"
-                  className="block btn-gradient text-white px-6 py-4 rounded-xl text-xl font-bold mt-8 text-center shadow-lg"
+                  className="block btn-gradient text-white px-6 py-4 rounded-xl text-lg font-bold text-center shadow-lg w-full"
                   data-testid="mobile-call-now"
                 >
                   <Phone className="inline mr-2 h-5 w-5" />
-                  Call Now
+                  Call (512) 555-1234
                 </a>
               </div>
             </div>
