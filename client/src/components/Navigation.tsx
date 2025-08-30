@@ -107,45 +107,74 @@ export default function Navigation() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 shadow-2xl z-[999] md:hidden overflow-y-auto"
-            style={{ maxWidth: "85vw" }}
+            className="fixed top-0 right-0 h-screen w-72 bg-white shadow-2xl z-[999] md:hidden"
+            style={{ maxWidth: "80vw" }}
             data-testid="mobile-menu"
           >
-            <div className="min-h-full p-6">
-              {/* Header with close button */}
-              <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200 dark:border-gray-700">
-                <div className="text-xl font-bold text-gray-800 dark:text-white flex items-center">
-                  <Wrench className="mr-2 h-5 w-5 text-primary" />
-                  Austin Pro
-                </div>
+            {/* Close Button */}
+            <div className="flex justify-end p-4">
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-gray-600 hover:text-gray-800 p-2"
+                data-testid="mobile-menu-close"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            
+            {/* Logo */}
+            <div className="px-6 pb-6">
+              <div className="text-lg font-bold text-gray-800 flex items-center">
+                <Wrench className="mr-2 h-5 w-5 text-blue-600" />
+                Austin Pro Plumbing
+              </div>
+            </div>
+            
+            {/* Navigation Links */}
+            <div className="px-6">
+              <div className="space-y-2">
                 <button
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-600 dark:text-gray-300 hover:text-primary p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                  data-testid="mobile-menu-close"
+                  onClick={() => scrollToSection("home")}
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  data-testid="mobile-nav-home"
                 >
-                  <X className="h-6 w-6" />
+                  Home
+                </button>
+                <button
+                  onClick={() => scrollToSection("services")}
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  data-testid="mobile-nav-services"
+                >
+                  Services
+                </button>
+                <button
+                  onClick={() => scrollToSection("about")}
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  data-testid="mobile-nav-about"
+                >
+                  About
+                </button>
+                <button
+                  onClick={() => scrollToSection("testimonials")}
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  data-testid="mobile-nav-testimonials"
+                >
+                  Reviews
+                </button>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  data-testid="mobile-nav-contact"
+                >
+                  Contact
                 </button>
               </div>
               
-              {/* Navigation Links */}
-              <div className="space-y-3 mb-8">
-                {navItems.map((item) => (
-                  <button
-                    key={item.href}
-                    onClick={() => scrollToSection(item.href)}
-                    className="block text-gray-800 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 py-4 px-4 text-lg w-full text-left font-medium rounded-lg border border-transparent hover:border-gray-200 dark:hover:border-gray-700"
-                    data-testid={`mobile-nav-${item.href}`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-              
               {/* Call Button */}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="mt-8 pt-6 border-t border-gray-200">
                 <a
                   href="tel:+15125551234"
-                  className="block btn-gradient text-white px-6 py-4 rounded-xl text-lg font-bold text-center shadow-lg w-full"
+                  className="btn-gradient text-white px-6 py-4 rounded-xl text-lg font-bold text-center shadow-lg w-full block"
                   data-testid="mobile-call-now"
                 >
                   <Phone className="inline mr-2 h-5 w-5" />
