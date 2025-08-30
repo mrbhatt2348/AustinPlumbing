@@ -74,7 +74,12 @@ export default function Navigation() {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                if (!isMobileMenuOpen) {
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+              }}
               className="text-foreground hover:text-primary"
               data-testid="mobile-menu-btn"
             >
