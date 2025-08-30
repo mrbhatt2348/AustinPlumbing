@@ -93,6 +93,7 @@ export default function Navigation() {
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
             className="fixed top-0 right-0 h-full w-64 bg-card shadow-xl z-50 md:hidden"
+            style={{ maxWidth: "80vw" }}
             data-testid="mobile-menu"
           >
             <div className="p-4">
