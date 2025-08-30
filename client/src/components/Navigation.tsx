@@ -107,31 +107,33 @@ export default function Navigation() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 shadow-2xl z-[999] md:hidden"
+            className="fixed top-0 right-0 h-full w-80 bg-white dark:bg-gray-900 shadow-2xl z-[999] md:hidden overflow-y-auto"
             style={{ maxWidth: "85vw" }}
             data-testid="mobile-menu"
           >
-            <div className="p-6 h-full flex flex-col">
-              <div className="flex justify-between items-center mb-8">
-                <div className="text-xl font-bold gradient-text flex items-center">
-                  <Wrench className="mr-2 h-5 w-5" />
+            <div className="min-h-full p-6">
+              {/* Header with close button */}
+              <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-200 dark:border-gray-700">
+                <div className="text-xl font-bold text-gray-800 dark:text-white flex items-center">
+                  <Wrench className="mr-2 h-5 w-5 text-primary" />
                   Austin Pro
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-600 dark:text-gray-300 hover:text-primary p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                  className="text-gray-600 dark:text-gray-300 hover:text-primary p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                   data-testid="mobile-menu-close"
                 >
                   <X className="h-6 w-6" />
                 </button>
               </div>
               
-              <div className="flex-1 space-y-4">
+              {/* Navigation Links */}
+              <div className="space-y-3 mb-8">
                 {navItems.map((item) => (
                   <button
                     key={item.href}
                     onClick={() => scrollToSection(item.href)}
-                    className="block text-gray-800 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors py-4 px-4 text-lg w-full text-left font-medium rounded-lg"
+                    className="block text-gray-800 dark:text-gray-200 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 py-4 px-4 text-lg w-full text-left font-medium rounded-lg border border-transparent hover:border-gray-200 dark:hover:border-gray-700"
                     data-testid={`mobile-nav-${item.href}`}
                   >
                     {item.label}
@@ -139,7 +141,8 @@ export default function Navigation() {
                 ))}
               </div>
               
-              <div className="mt-6">
+              {/* Call Button */}
+              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <a
                   href="tel:+15125551234"
                   className="block btn-gradient text-white px-6 py-4 rounded-xl text-lg font-bold text-center shadow-lg w-full"
