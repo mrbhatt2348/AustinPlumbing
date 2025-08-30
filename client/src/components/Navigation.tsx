@@ -84,90 +84,80 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Menu Backdrop */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <div
-            className="fixed inset-0 bg-black/80 z-[9998] md:hidden"
-            onClick={() => setIsMobileMenuOpen(false)}
-            data-testid="mobile-menu-backdrop"
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Full Screen Modal */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 right-0 h-screen w-72 bg-white shadow-2xl z-[9999] md:hidden"
-            style={{ maxWidth: "80vw" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999] md:hidden flex items-center justify-center"
             data-testid="mobile-menu"
           >
-            {/* Close Button */}
-            <div className="flex justify-end p-4">
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-gray-600 hover:text-gray-800 p-2"
-                data-testid="mobile-menu-close"
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            
-            {/* Logo */}
-            <div className="px-6 pb-6">
-              <div className="text-lg font-bold text-gray-800 flex items-center">
-                <Wrench className="mr-2 h-5 w-5 text-blue-600" />
-                Austin Pro Plumbing
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-2xl p-8 w-80 max-w-[90vw] max-h-[80vh] overflow-y-auto shadow-2xl"
+            >
+              {/* Header */}
+              <div className="flex justify-between items-center mb-8">
+                <div className="text-xl font-bold text-gray-800 flex items-center">
+                  <Wrench className="mr-2 h-5 w-5 text-blue-600" />
+                  Austin Pro
+                </div>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-gray-600 hover:text-gray-800 p-2 rounded-lg hover:bg-gray-100"
+                  data-testid="mobile-menu-close"
+                >
+                  <X className="h-6 w-6" />
+                </button>
               </div>
-            </div>
-            
-            {/* Navigation Links */}
-            <div className="px-6">
-              <div className="space-y-2">
+              
+              {/* Navigation Links */}
+              <div className="space-y-3 mb-8">
                 <button
                   onClick={() => scrollToSection("home")}
-                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors py-4 px-4 text-lg w-full text-left font-medium rounded-lg border border-transparent hover:border-blue-200"
                   data-testid="mobile-nav-home"
                 >
-                  Home
+                  🏠 Home
                 </button>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors py-4 px-4 text-lg w-full text-left font-medium rounded-lg border border-transparent hover:border-blue-200"
                   data-testid="mobile-nav-services"
                 >
-                  Services
+                  🔧 Services
                 </button>
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors py-4 px-4 text-lg w-full text-left font-medium rounded-lg border border-transparent hover:border-blue-200"
                   data-testid="mobile-nav-about"
                 >
-                  About
+                  ℹ️ About
                 </button>
                 <button
                   onClick={() => scrollToSection("testimonials")}
-                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors py-4 px-4 text-lg w-full text-left font-medium rounded-lg border border-transparent hover:border-blue-200"
                   data-testid="mobile-nav-testimonials"
                 >
-                  Reviews
+                  ⭐ Reviews
                 </button>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="block text-gray-800 hover:text-blue-600 hover:bg-gray-50 transition-colors py-3 px-4 text-lg w-full text-left font-medium rounded-lg"
+                  className="block text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors py-4 px-4 text-lg w-full text-left font-medium rounded-lg border border-transparent hover:border-blue-200"
                   data-testid="mobile-nav-contact"
                 >
-                  Contact
+                  📞 Contact
                 </button>
               </div>
               
               {/* Call Button */}
-              <div className="mt-8 pt-6 border-t border-gray-200">
+              <div className="pt-6 border-t border-gray-200">
                 <a
                   href="tel:+15125551234"
                   className="btn-gradient text-white px-6 py-4 rounded-xl text-lg font-bold text-center shadow-lg w-full block"
@@ -177,7 +167,7 @@ export default function Navigation() {
                   Call (512) 555-1234
                 </a>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
