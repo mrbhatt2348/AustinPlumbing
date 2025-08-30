@@ -37,7 +37,7 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="bg-card/80 backdrop-blur-md border-b border-border sticky top-0 z-50">
+    <nav className="bg-card/80 backdrop-blur-md border-b border-border sticky top-0 z-[55]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -92,7 +92,7 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] md:hidden"
             onClick={() => setIsMobileMenuOpen(false)}
             data-testid="mobile-menu-backdrop"
           />
@@ -107,7 +107,7 @@ export default function Navigation() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl z-50 md:hidden border-l border-border"
+            className="fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl z-[70] md:hidden border-l border-gray-200 dark:border-gray-700"
             style={{ maxWidth: "80vw" }}
             data-testid="mobile-menu"
           >

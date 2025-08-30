@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function FloatingCallButton() {
   return (
     <motion.div 
-      className="fixed bottom-6 right-6 z-40"
+      className="fixed bottom-6 right-6 z-[30]"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       data-testid="floating-call-button"
